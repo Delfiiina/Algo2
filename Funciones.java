@@ -127,7 +127,13 @@ class Funciones {
     }
 
     boolean esSufijo(String s1, String s2) {
-        
+        string S1Vacio = '';
+        string S2Vacio = '';
+        for (i = 0; i < s1.length(); i ++){
+            while (s1 != ''){
+                
+            }
+        }
 
 
         }
