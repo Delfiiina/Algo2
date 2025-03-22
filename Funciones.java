@@ -127,17 +127,9 @@ class Funciones {
     }
 
     boolean esSufijo(String s1, String s2) {
-        if (s2.length() < s1.length()){
-            return false;
-        }
-        else {
-            for (int i = s1.length()-1; i != 0;  i--){
-                if (s2.charAt(i) != s1.charAt(i)){
-                    return false;
-                }
+        
 
-            }
-        return true;
+
         }
         
 } 
