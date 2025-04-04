@@ -23,7 +23,7 @@ class ArregloRedimensionableDeRecordatorios {
         for (int j = 0; j < this.longitud-1; j++){
             nuevo_recordatorio[j] = this.recordatorio[j];
         }
-        nuevo_recordatorio[this.longitud-1] = i;
+        nuevo_recordatorio[this.longitud-1] = new Recordatorio (i);
         this.recordatorio = nuevo_recordatorio;
     }
 
@@ -44,16 +44,12 @@ class ArregloRedimensionableDeRecordatorios {
         this.recordatorio = new Recordatorio [vector.longitud];
         this.longitud = vector.longitud;
         for (int n=0; n< vector.longitud; n++){
-            this.recordatorio[n] = vector.obtener(n);
+            this.recordatorio[n] = new Recordatorio(vector.obtener(n));
         }
         this.longitud = vector.longitud();
     }
 
     public ArregloRedimensionableDeRecordatorios copiar() {
-        ArregloRedimensionableDeRecordatorios nuevo_recordatorio = new ArregloRedimensionableDeRecordatorios(this);
-        for(int i=0; i<this.recordatorio.length;i++){
-            nuevo_recordatorio.agregarAtras(this.recordatorio[i]);
-        }
-        return nuevo_recordatorio;
+        return new ArregloRedimensionableDeRecordatorios(this);
     }
 }
