@@ -26,7 +26,7 @@ public class Recordatorio {
 
     @Override
     public String toString() {
-        String res = mensaje + "@" + fecha.toString() + horario.toString();
+        String res = mensaje + " @ " + fecha.toString() + " " + horario.toString();
         return res;
     }
 
@@ -38,7 +38,7 @@ public class Recordatorio {
         }
         else {
             Recordatorio otroRecordatorio = (Recordatorio) otro;
-            res = (otroRecordatorio.fecha == this.fecha && otroRecordatorio.horario == this.horario && otroRecordatorio.mensaje == this.mensaje);
+            res = (otroRecordatorio.fecha.equals(this.fecha) && otroRecordatorio.horario.equals(this.horario)&& otroRecordatorio.mensaje == this.mensaje);
         }
         return res;
     }

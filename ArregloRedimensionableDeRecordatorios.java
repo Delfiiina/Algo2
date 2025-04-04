@@ -18,13 +18,13 @@ class ArregloRedimensionableDeRecordatorios {
     }
 
     public void agregarAtras(Recordatorio i) {
-        Recordatorio[] nuevo_recordatorio = new Recordatorio[this.longitud+1]; 
-        for (int j = 0; j < this.longitud; j++){
+        this.longitud = this.longitud +1;
+        Recordatorio[] nuevo_recordatorio = new Recordatorio[this.longitud]; 
+        for (int j = 0; j < this.longitud-1; j++){
             nuevo_recordatorio[j] = this.recordatorio[j];
         }
-        nuevo_recordatorio[this.longitud] = i;
+        nuevo_recordatorio[this.longitud-1] = i;
         this.recordatorio = nuevo_recordatorio;
-        this.longitud = this.longitud +1;
     }
 
     public void quitarAtras() {
@@ -41,8 +41,12 @@ class ArregloRedimensionableDeRecordatorios {
     }
 
     public ArregloRedimensionableDeRecordatorios(ArregloRedimensionableDeRecordatorios vector) {
-        this.recordatorio = vector.copiar().recordatorio;
+        this.recordatorio = new Recordatorio [vector.longitud];
         this.longitud = vector.longitud;
+        for (int n=0; n< vector.longitud; n++){
+            this.recordatorio[n] = vector.obtener(n);
+        }
+        this.longitud = vector.longitud();
     }
 
     public ArregloRedimensionableDeRecordatorios copiar() {
