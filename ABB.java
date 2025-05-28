@@ -64,12 +64,99 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         Nodo aux = this.raiz;
         return maximoAuxiliar(aux);
     }
+
+    public void insertar (T elem){
+        if (this.raiz == null) {
+            this.raiz = new Nodo(elem);
+            this.cardinal++;
+            return;
+        }
+        insertarAuxiliar(raiz, elem);
+    }
+
+    private Nodo insertarAuxiliar (Nodo nodo, T elem){
+        if (nodo == null) {
+            nodo = new Nodo(elem);
+            cardinal++;
+            return nodo;
+        }
+
+        if (elem.compareTo(nodo.valor) != 0) {
+            Nodo nodoTemp;
+            if (elem.compareTo(nodo.valor) < 0) {
+                if (nodo.izquierdo == null) {
+                    nodoTemp = insertarAuxiliar(nodo.izquierdo, elem);
+                    nodoTemp.padre = nodo;
+                    nodo.izquierdo = nodoTemp;
+                } else {
+                    insertarAuxiliar(nodo.derecho, elem);
+                }                
+            }
+            else{
+                if (nodo.derecho == null) {
+                    nodoTemp = insertarAuxiliar(nodo.derecho, elem);
+                    nodoTemp.padre = nodo;
+                    nodo.derecho = nodoTemp;
+                } else {
+                    insertarAuxiliar(nodo.derecho, elem);
+                }
+            }
+        } else{
+            return nodo;
+        }
+        return nodo;
+    }
+/* 
+    private Nodo insertarAuxiliar (Nodo nodo, T elem){
+        T data = elem;
+        if (nodo == null){
+            nodo = new Nodo(data);
+            cardinal++;
+            return nodo;
+        }
+        if (nodo.valor.compareTo(data) != 0){
+            if (nodo.valor.compareTo(data) < 0){
+                insertarAuxiliar(nodo.derecho, data);
+            }
+            else{
+                insertarAuxiliar(nodo.izquierdo, data);
+            }
+        } else {
+            return nodo;
+        }
+        return nodo;
+    }
     
     public void insertar(T elem){
         Nodo actual = this.raiz;
         if (raiz == null) { // si mi árbol está vacío, lo pongo como raíz
             this.raiz = new Nodo(elem);
             this.cardinal++;
+            return;
+        }
+
+        Nodo nodo;
+        if (actual.valor.compareTo(elem) != 0){
+            if (actual.valor.compareTo(elem) < 0){
+                nodo = insertarAuxiliar(actual.derecho, elem);
+            }
+            else{
+                nodo = insertarAuxiliar(actual.izquierdo, elem);
+            }
+
+
+        }
+        else{
+            return;
+        }
+    }
+
+    public void insertar(T elem){
+        Nodo actual = this.raiz;
+        if (raiz == null) { // si mi árbol está vacío, lo pongo como raíz
+            this.raiz = new Nodo(elem);
+            this.cardinal++;
+            return;
         } else {
             while (true) { // voy a usar breaks 
                 if (actual.valor.compareTo(elem) == 0) {
@@ -96,14 +183,14 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
             }
         }
     }
-
+*/
     public Nodo dondeTieneQueEstar (T elem){ // devuelvo el nodo donde tiene que estar ese elemento 
         Nodo actual = this.raiz; 
-        if (this.raiz == null){
+        if (actual == null){
             return null;
         } else {
             while (actual != null) {
-                if (actual.valor.compareTo(elem) == 0) { // si son iguales, devuelvo ese nodo y dejo de buscar
+                if (actual.valor.compareTo(elem) == 0) { // si son iguales, devuelvo ese nodo y dejo de buscar, significa que está ahí
                     return actual;
                 } else if (actual.valor.compareTo(elem) > 0) { // si es mayor, me voy por el lado izquierdo ya que tendría que estar con los menores
                         actual = actual.izquierdo; // voy buscando yendome por la rama que corresponde
@@ -116,7 +203,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     }
 
     public boolean pertenece(T elem){
-        return dondeTieneQueEstar (elem) != null; // si donde tiene que estar está vacío entonces no está
+        return this.dondeTieneQueEstar (elem) != null; // si donde tiene que estar está vacío entonces no está
     }
 
     private void intercambiar(Nodo n1, Nodo n2) {
@@ -161,11 +248,13 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         if (this.cardinal == 0){
             return ("{}");
         }
-        while (iterador.haySiguiente()) { // Con el iterador voy recorriendo y mientras siga teniendo elems...
+        else{
+           while (iterador.haySiguiente()) { // Con el iterador voy recorriendo y mientras siga teniendo elems...
             res = res + iterador.siguiente() + ","; // a lo que ya tenía le voy agregando el siguiente
         }
         res = res + iterador.siguiente() + "}"; // pongo el último (ya que no llega a ponerlo el ciclo, solo se fijó si habia un sig) y cierro
-        return res;
+        return res; 
+        }
     }
 
     private class ABB_Iterador implements Iterador<T> {
