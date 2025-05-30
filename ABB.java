@@ -64,8 +64,51 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         Nodo aux = this.raiz;
         return maximoAuxiliar(aux);
     }
+/*   
+    private Nodo insertarAuxiliar (Nodo nodo, T elem){
+        T data = elem;
+        if (nodo == null){
+            nodo = new Nodo(data);
+            cardinal++;
+            return nodo;
+        }
+        if (nodo.valor.compareTo(data) != 0){
+            if (nodo.valor.compareTo(data) < 0){
+                insertarAuxiliar(nodo.derecho, data);
+            }
+            else{
+                insertarAuxiliar(nodo.izquierdo, data);
+            }
+        } else {
+            return nodo;
+        }
+        return nodo;
+    }
+    
+    public void insertar(T elem){
+        Nodo actual = this.raiz;
+        if (raiz == null) { 
+            this.raiz = new Nodo(elem);
+            this.cardinal++;
+            return;
+        }
 
-    public void insertar (T elem){
+        Nodo nodo;
+        if (actual.valor.compareTo(elem) != 0){
+            if (actual.valor.compareTo(elem) < 0){
+                nodo = insertarAuxiliar(actual.derecho, elem);
+            }
+            else{
+                nodo = insertarAuxiliar(actual.izquierdo, elem);
+            }
+        }
+        else{
+            return;
+        }
+    }
+   
+ 
+     public void insertar (T elem){
         if (this.raiz == null) {
             this.raiz = new Nodo(elem);
             this.cardinal++;
@@ -105,52 +148,8 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
             return nodo;
         }
         return nodo;
-    }
-/* 
-    private Nodo insertarAuxiliar (Nodo nodo, T elem){
-        T data = elem;
-        if (nodo == null){
-            nodo = new Nodo(data);
-            cardinal++;
-            return nodo;
-        }
-        if (nodo.valor.compareTo(data) != 0){
-            if (nodo.valor.compareTo(data) < 0){
-                insertarAuxiliar(nodo.derecho, data);
-            }
-            else{
-                insertarAuxiliar(nodo.izquierdo, data);
-            }
-        } else {
-            return nodo;
-        }
-        return nodo;
-    }
+ */  
     
-    public void insertar(T elem){
-        Nodo actual = this.raiz;
-        if (raiz == null) { // si mi árbol está vacío, lo pongo como raíz
-            this.raiz = new Nodo(elem);
-            this.cardinal++;
-            return;
-        }
-
-        Nodo nodo;
-        if (actual.valor.compareTo(elem) != 0){
-            if (actual.valor.compareTo(elem) < 0){
-                nodo = insertarAuxiliar(actual.derecho, elem);
-            }
-            else{
-                nodo = insertarAuxiliar(actual.izquierdo, elem);
-            }
-
-
-        }
-        else{
-            return;
-        }
-    }
-
     public void insertar(T elem){
         Nodo actual = this.raiz;
         if (raiz == null) { // si mi árbol está vacío, lo pongo como raíz
@@ -183,7 +182,8 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
             }
         }
     }
-*/
+
+
     public Nodo dondeTieneQueEstar (T elem){ // devuelvo el nodo donde tiene que estar ese elemento 
         Nodo actual = this.raiz; 
         if (actual == null){
