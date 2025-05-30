@@ -110,41 +110,6 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         return;
     }
 
-/*    
-    public void insertar(T elem){
-        Nodo actual = this.raiz;
-        if (raiz == null) { // si mi árbol está vacío, lo pongo como raíz
-            this.raiz = new Nodo(elem);
-            this.cardinal++;
-            return;
-        } else {
-            while (true) { // voy a usar breaks 
-                if (actual.valor.compareTo(elem) == 0) {
-                    break; // si quiero insertar uno que ya está, no hago nada
-                } else if (actual.valor.compareTo(elem) > 0) { // si el que quiero agregar es menor...
-                    if (actual.izquierdo == null) { // y está el lugar libre
-                        actual.izquierdo = new Nodo(elem);
-                        actual.izquierdo.padre = actual; // lo agrego y le indico cuál es su padre
-                        this.cardinal++;
-                        break;
-                    } else {
-                        actual = actual.izquierdo; // sino, sigo buscando el lugar donde tiene que ir 
-                    }
-                } else if (actual.valor.compareTo(elem) < 0) { // lo mismo pero si el que quiero agregar es mayor 
-                    if (actual.derecho == null) {
-                        actual.derecho = new Nodo(elem);
-                        actual.derecho.padre = actual;
-                        this.cardinal++;
-                        break;
-                    } else {
-                        actual = actual.derecho;
-                    }
-                }
-            }
-        }
-    }
-*/ 
-
     public Nodo dondeTieneQueEstar (T elem){ // devuelvo el nodo donde tiene que estar ese elemento 
         Nodo actual = this.raiz; 
         if (actual == null){
